@@ -1,61 +1,143 @@
--- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- MySQL dump 10.13  Distrib 8.0.28, for macos11 (x86_64)
 --
--- Client :  localhost
--- Généré le :  Jeu 26 Octobre 2017 à 13:53
--- Version du serveur :  5.7.19-0ubuntu0.16.04.1
--- Version de PHP :  7.0.22-0ubuntu0.16.04.1
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: serial_series
+-- ------------------------------------------------------
+-- Server version	8.0.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de données :  `simple-mvc`
---
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `item`
+-- Table structure for table `category`
 --
 
-CREATE TABLE `item` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `category` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Contenu de la table `item`
+-- Dumping data for table `category`
 --
 
-INSERT INTO `item` (`id`, `title`) VALUES
-(1, 'Stuff'),
-(2, 'Doodads');
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES
+(1, 'Japanese animation'),
+(2, 'Horror'),
+(3, 'Comedy'),
+(4, 'Thriller');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Index pour les tables exportées
+-- Table structure for table `serie`
 --
 
---
--- Index pour la table `item`
---
-ALTER TABLE `item`
-  ADD PRIMARY KEY (`id`);
+DROP TABLE IF EXISTS `serie`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `serie` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `number_serie` int DEFAULT NULL,
+  `image` varchar(45) DEFAULT NULL,
+  `description`text,
+  `category_id` int DEFAULT NULL,
+  `category_id1` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_serie_category_idx` (`category_id1`),
+  CONSTRAINT `fk_serie_category` FOREIGN KEY (`category_id1`) REFERENCES `category` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- Dumping data for table `serie`
 --
 
+LOCK TABLES `serie` WRITE;
+/*!40000 ALTER TABLE `serie` DISABLE KEYS */;
+INSERT INTO `instrument` VALUES 
+(1, 'YOU', 1, 'https://imgur.com/7KcuM9p',1,1),
+(2, '',2, '','',1,2),
+(3, '',3,'','',1,3);
+
+UNLOCK TABLES;
+
 --
--- AUTO_INCREMENT pour la table `item`
+-- Table structure for table `user`
 --
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `birthday` datetime DEFAULT NULL,
+  `email` varchar(80) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `seen`
+--
+
+DROP TABLE IF EXISTS `seen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `seen` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `is_completed` tinyint DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `serie_id` int DEFAULT NULL,
+  `serie_id1` int NOT NULL,
+  `user_id1` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_seen_serie1_idx` (`serie_id1`),
+  KEY `fk_seen_user1_idx` (`user_id1`),
+  CONSTRAINT `fk_seen_serie1` FOREIGN KEY (`serie_id1`) REFERENCES `serie` (`id`),
+  CONSTRAINT `fk_seen_user1` FOREIGN KEY (`user_id1`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Dumping data for table `seen`
+--
+
+LOCK TABLES `seen` WRITE;
+/*!40000 ALTER TABLE `seen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `seen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
 ALTER TABLE `item`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

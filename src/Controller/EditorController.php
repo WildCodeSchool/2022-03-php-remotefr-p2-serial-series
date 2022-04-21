@@ -9,8 +9,3 @@ class EditorController extends AbstractController
         return $this->twig->render('Editor/index.html.twig');
     }
 }
-
-
-
-
-
