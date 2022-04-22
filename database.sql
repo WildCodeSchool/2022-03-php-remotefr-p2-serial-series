@@ -28,7 +28,7 @@ CREATE TABLE `category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `serie` (
   PRIMARY KEY (`id`),
   KEY `fk_serie_category_idx` (`category_id1`),
   CONSTRAINT `fk_serie_category` FOREIGN KEY (`category_id1`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,10 +72,9 @@ CREATE TABLE `serie` (
 
 LOCK TABLES `serie` WRITE;
 /*!40000 ALTER TABLE `serie` DISABLE KEYS */;
-INSERT INTO `instrument` VALUES 
-(1, 'YOU', 1, 'https://imgur.com/7KcuM9p',1,1),
-(2, '',2, '','',1,2),
-(3, '',3,'','',1,3);
+INSERT INTO `serie` VALUES 
+(1, 'YOU', 1, 'https://imgur.com/7KcuM9p','Hello',1,1);
+
 
 UNLOCK TABLES;
 
@@ -94,7 +93,7 @@ CREATE TABLE `user` (
   `email` varchar(80) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +124,7 @@ CREATE TABLE `seen` (
   KEY `fk_seen_user1_idx` (`user_id1`),
   CONSTRAINT `fk_seen_serie1` FOREIGN KEY (`serie_id1`) REFERENCES `serie` (`id`),
   CONSTRAINT `fk_seen_user1` FOREIGN KEY (`user_id1`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `seen`
@@ -138,8 +137,7 @@ UNLOCK TABLES;
 
 
 
-ALTER TABLE `item`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

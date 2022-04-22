@@ -2,8 +2,7 @@
 
 namespace App\Controller;
 
-use App\Model\CategoryManager;
-use App\Model\SerieManager;
+use App\Model\CategoryManager;//use App\Model\SerieManager;
 
 class CategoryController extends AbstractController
 {
@@ -11,12 +10,11 @@ class CategoryController extends AbstractController
     {
         $categoryManager = new CategoryManager();
         $categories = $categoryManager->selectAll();
-        $serieManager = new SerieManager();
-        $series = $serieManager->selectAll();
+        //$serieManager = new SerieManager();
+        //$series = $serieManager->selectAll();
         return $this->twig->render('Category/index.html.twig', [
             'categories' => $categories,
-            'series' => $series
-
+            //'series' => $series
         ]);
     }
 }
