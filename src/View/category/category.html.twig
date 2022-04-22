@@ -1,40 +1,37 @@
-{% extends "layout.html.twig" %}
+{% extends 'layout.html.twig' %}
 
 {% block content %}
-	<h1 class="text-center mt-5">
-		Category
-	</h1>
+    
+        {% for category in categories %}
+        <section class="swiper mySwiper mb-5 mx-5">
+            <h2 class ="mb-5">
+            {{ category.title }}
+            </h2>
+            {% for i in 1..4 %}
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="max: width 540px;">
+                    <a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt=""></div>
+                </a>
+                <div class="swiper-slide">
+                    <a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt=""></div>
+                </a>
+                <div class="swiper-slide">
+                    <a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt=""></div>
+                </a>
+                <div class="swiper-slide">
+                    <a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt=""></div>
+                </a>
+                <div class="swiper-slide">
+                    <a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt=""></div>
+                </a>
+            </div>
+            <div class="swiper-button-next" style="max: width 320px;"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        {% endfor %}
+        </section>
+{% endfor %}
 
-	<!-- Swiper -->
-	{# <h2>Comedy</h2> #}
-	{% for j in 1..4 %}
-		<section class="swiper mySwiper mb-5 mx-5">
-			<h2 class="mb-5">
-				Comedy
-			</h2>
-			<div class="swiper-wrapper">
-				<div class="swiper-slide" style="max: width 540px;">
-					<a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt="">Shameless</div>
-				</a>
-				<div class="swiper-slide">
-					<a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt="">Shameless</div>
-				</a>
-				<div class="swiper-slide">
-					<a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt="">Shameless</div>
-				</a>
-				<div class="swiper-slide">
-					<a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt="">Shameless</div>
-				</a>
-				<div class="swiper-slide">
-					<a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt="">Shameless</div>
-				</a>
-			</div>
-
-			<div class="swiper-button-next"></div>
-			<div class="swiper-button-prev"></div>
-			<div class="swiper-pagination">titre</div>
-		</section>
-	{% endfor %}
 
 	<!-- Swiper JS -->
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -77,15 +74,5 @@ spaceBetween: 50
 }
 }
 });
-	</script>
+</script>
 {% endblock %}
-
-{# pagination: {
-el: ".swiper-pagination",
-type: "fraction"
-}, #}
-
-{# autoplay: {
-delay: 2500,
-disableOnInteraction: false
-}, #}
