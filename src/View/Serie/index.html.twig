@@ -1,6 +1,31 @@
+{% extends "layout.html.twig" %}
+
 {% block content %}
-    <h1>Hello Wilder !</h1>
-    <pre>
-        {{ dump(series) }}
-    </pre>
+<section>
+    <div class="page">
+        <div class="affiche">
+            <div class="bloc1">
+                <div class="titre">
+                    <h2>Title</h2>
+                </div>
+                <div class="form">
+                    <form>
+                        <select name="seen" id="seen">
+                            <option value="seen">Seen</option>
+                            <option value="p-seen">Partially seen</option>
+                            <option value="n-seen">Not seen</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <img class="img-fluid" src="https://fakeimg.pl/400x500/?text=Hello">
+        </div>
+        <div class="description">
+            <h2>Synopsis</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, officia explicabo. Debitis quae ut aperiam, cum saepe velit pariatur nemo non magnam nihil tempore fugiat dolorem vitae provident aliquam mollitia! Lorem ipsum dolor sit amet consectetur, adipisicing elit. At repudiandae a temporibus iure voluptate officia dolorum totam optio tempora modi veritatis ut, odio est, facere, eligendi expedita numquam sit sed?</p>
+            <button type="button" class="btn btn-dark">Edit</button>
+        </div>
+    </div>
+</section>
 {% endblock %}
+

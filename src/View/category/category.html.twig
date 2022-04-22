@@ -1,0 +1,91 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+	<h1 class="text-center mt-5">
+		Category
+	</h1>
+
+	<!-- Swiper -->
+	{# <h2>Comedy</h2> #}
+	{% for j in 1..4 %}
+		<section class="swiper mySwiper mb-5 mx-5">
+			<h2 class="mb-5">
+				Comedy
+			</h2>
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" style="max: width 540px;">
+					<a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt="">Shameless</div>
+				</a>
+				<div class="swiper-slide">
+					<a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt="">Shameless</div>
+				</a>
+				<div class="swiper-slide">
+					<a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt="">Shameless</div>
+				</a>
+				<div class="swiper-slide">
+					<a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt="">Shameless</div>
+				</a>
+				<div class="swiper-slide">
+					<a href><img class="img-fluid" src="https://fakeimg.pl/850x1000/?text=Shameless" alt="">Shameless</div>
+				</a>
+			</div>
+
+			<div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-pagination">titre</div>
+		</section>
+	{% endfor %}
+
+	<!-- Swiper JS -->
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+	<!-- Initialize Swiper -->
+	<script>
+		var swiper = new Swiper(".mySwiper", {
+slidesPerView: 3,
+centerMode: true,
+centerPadding: '20px',
+spaceBetween: 30,
+autoplay: {
+delay: 2500,
+disableOnInteraction: false
+},
+navigation: {
+nextEl: ".swiper-button-next",
+prevEl: ".swiper-button-prev",
+},
+breakpoints: {
+320: {
+slidesPerView: 1,
+spaceBetween: 20
+},
+480: {
+slidesPerView: 1,
+spaceBetween: 20
+},
+768: {
+slidesPerView: 2,
+spaceBetween: 40
+},
+1024: {
+slidesPerView: 3,
+spaceBetween: 50
+},
+1400: {
+slidesPerView: 4,
+spaceBetween: 50
+}
+}
+});
+	</script>
+{% endblock %}
+
+{# pagination: {
+el: ".swiper-pagination",
+type: "fraction"
+}, #}
+
+{# autoplay: {
+delay: 2500,
+disableOnInteraction: false
+}, #}
