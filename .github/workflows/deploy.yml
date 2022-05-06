@@ -14,8 +14,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - uses: AlexxNB/caprover-action@v1
+      - uses: actions/setup-node@v2
         with:
-          server: '${{ secrets.CAPROVER_SERVER }}'
-          password: '${{ secrets.CAPROVER_PASSWORD }}'
-          appname: '${{ secrets.CAPROVER_APP_NAME }}'
+            node-version: '14'
+
+      - name: Install caprover
+        run: npm install -g caprover
+
+      - name: Caprover Deploy
+        run: caprover deploy -h '${{ secrets.CAPROVER_SERVER }}' -p '${{ secrets.CAPROVER_PASSWORD }}' -b 'master' -a '${{ secrets.CAPROVER_APP_NAME }}'
+
+    #   - uses: AlexxNB/caprover-action@v1
+    #     with:
+    #       server: '${{ secrets.CAPROVER_SERVER }}'
+    #       password: '${{ secrets.CAPROVER_PASSWORD }}'
+    #       appname: '${{ secrets.CAPROVER_APP_NAME }}'
