@@ -1,0 +1,48 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    <section>
+        <div class="page">
+            <div class="affiche">
+                <div class="bloc1">
+                    <div class="titre">
+                        <h2>
+                            {{ serie.title }}
+                        </h2>
+                    </div>
+                    <div class="form">
+                        <form>
+                            <select name="seen" id="seen">
+                                <option value="seen">
+                                    Seen
+                                                                    
+                                </option>
+                                <option value="p-seen">
+                                    Partially seen
+                                                                    
+                                </option>
+                                <option value="n-seen">
+                                    Not seen
+                                                                    
+                                </option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <img class="img-fluid" src="/uploads/{{ serie.image }}"></div>
+                <div class="description">
+                    <h2>
+                        Synopsis
+                                            
+                    </h2>
+                    <p>
+                        {{ serie.description|raw }}
+                    </p>
+                
+                <div class="edit">
+                    <a href="/serie/edit?id={{ serie.id }}" class="btn btn-dark">Edit</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

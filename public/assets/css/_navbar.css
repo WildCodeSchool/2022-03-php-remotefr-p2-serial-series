@@ -1,0 +1,81 @@
+.navbar {
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+
+/* .nav-link, 
+.navbar-brand {
+    color: var(--foreground-primary);
+} */
+
+.navbar-brand,
+.nav-item {
+    font-family: var(--bs-font-monospace);
+}
+
+/* .nav-item :hover {
+    color: var(--bs-secondary);
+} */
+
+.navbar-brand,
+.nav-link {
+    color: inherit;
+    color: var(--foreground-primary);
+}
+
+.navbar-brand:hover,
+.nav-link:hover {
+    color: inherit;
+    color: var(--bs-secondary);
+}
+
+.navbar-brand {
+    padding: 0px;
+}
+
+.navbar-brand>img {
+    height: auto;
+    width: auto;
+    max-width: 70px;
+    max-height: 70px;
+}
+
+.navbar-toggler {
+    border-color: white;
+
+}
+
+.offcanvas-body {
+    background-color: rgb(var(--bs-primary-rgb));
+}
+
+.offcanvas-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1rem 1rem;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+}
+
+.nav-link {
+    padding-top: 0.5rem;
+    margin-right: 1.5rem;
+}
+
+.nav-link-img>img {
+    height: auto;
+    width: auto;
+    max-width: 25px;
+    max-height: 25px;
+    margin-top: 0.3rem;
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active {
+    font-style: oblique;
+    color: var(--bs-secondary);
+}

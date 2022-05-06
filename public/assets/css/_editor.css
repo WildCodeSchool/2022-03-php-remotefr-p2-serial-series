@@ -1,0 +1,45 @@
+.editor > h2 {
+    font-size: 1.2rem;
+    margin-bottom: 5rem;
+    margin-top: 1.5rem;
+}
+
+.submit > button {
+    background-color: rgb(var(--bs-primary-rgb));
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 3rem;
+    color: rgb(var(--bs-secondary-rgb));
+    font-family: var(--bs-font-monospace);
+}
+
+form > .mb-3 {
+    margin-bottom: 2rem!important;
+}
+
+.ck.ck-toolbar.ck-toolbar_grouping {
+    flex-wrap: nowrap;
+    background-color: rgb(var(--bs-secondary-rgb));
+}
+
+.input-group-text {
+    background-color: rgb(var(--bs-primary-rgb));
+    color: rgb(var(--bs-secondary-rgb));
+}
+
+.col-form-label {
+    font-size: 1.1rem;
+}
+
+.form-control:focus {
+    border-color: #000000;
+    box-shadow: 0 0 0.2rem 0.1rem rgb(var(--bs-secondary-rgb));
+} 
+
+.form-select:focus {
+    border-color: #000000;
+    box-shadow: 0 0 0.2rem 0.1rem rgb(var(--bs-secondary-rgb));
+} 
+
+
+

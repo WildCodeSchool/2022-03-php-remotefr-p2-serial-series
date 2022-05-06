@@ -1,0 +1,47 @@
+<!--MODAL LOGIN-->
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h6 class="modal-title">
+					<ul class="nav nav-tabs">
+						<li class="nav-item">
+							<a class="nav-link active" data-bs-toggle="modal" data-bs-target="#registerModal" href="/register">Register</a>
+						</li>
+					</ul>
+				</h6>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+
+			<div class="modal-body">
+				<div class="modal-body">
+				{% include 'user/_form-login.html.twig' with {'formId': 'form-login'} %}
+			</div>
+			</div>
+			<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="submit" form="form-login" class="btn btn-success">Connect</button>
+					</div>
+		</div>
+	</div>
+</div>
+
+<!-- MODAL REGISTER -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title"></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{% include 'user/_form-register.html.twig' with {'formId': 'form-register'} %}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="submit" form="form-register" class="btn btn-success">Create account</button>
+			</div>
+		</div>
+	</div>
+</div>

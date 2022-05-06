@@ -1,0 +1,23 @@
+:root {
+    /* Blue */
+    --bs-primary-rgb: 48, 61, 93;
+    --bs-primary: rgb(var(--bs-primary-rgb));
+
+    /* Yellow */
+    --bs-secondary-rgb: 255, 200, 0; 
+    --bs-secondary: rgb(var(--bs-secondary-rgb));
+
+    /* Grey */
+    --bs-success-rgb: 238, 238, 238; 
+    --bs-success: rgb(var(--bs-success-rgb));
+
+
+    --foreground-primary: rgb(var(--bs-white-rgb));
+
+    --bs-font-sans-serif: 'Roboto', sans-serif;
+    --bs-body-font-family: var(--bs-font-sans-serif);
+
+    --bs-font-monospace: 'Fredoka One', cursive;
+    
+
+}

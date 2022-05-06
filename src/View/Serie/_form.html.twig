@@ -1,0 +1,61 @@
+<section class="editor">
+    <h1>Serial Editor</h1>
+    <h2>Add, modify, delete...</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{ serie.id }}"/>
+        <div class="row mb-3">
+            <label for="category" class="col-sm-2 col-form-label">Category</label>
+            <div class="col-sm-10">
+                <select class="form-select" name="category" id="category" aria-label="Default select example">
+                    <option>Select a category</option>
+                        {% for category in categories %}
+                            <option value="{{ category.id }}" {{ category.id == serie.category_id ? 'selected' }}>
+                                {{ category.title }}
+                            </option>
+                        {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="title" class="col-sm-2 col-form-label">Title</label>
+            <div class="col-sm-10">
+                <input type="title" name="title" class="form-control" id="title" aria-describedby="titleHelp" value="{{ serie.title }}"/>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="description" class="col-sm-2 col-form-label">Synopsis</label>
+            <div class="col-sm-10">
+                <textarea class="form-control ckeditor" name="description" id="description">{{ serie.description }}</textarea>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="formFile" class="col-sm-2 col-form-label">Picture</label>
+            <div class="col-sm-10">
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" name="image" id="inputGroupFile02"/>
+                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                </div>
+            </div>
+        </div>
+        <div class="submit">
+            <button type="submit" class="btn btn-dark">Save</button>
+        </div>
+    </form>
+</section>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script>
+    const editors = document.querySelectorAll('.ckeditor');
+    editors.forEach(function(editor) {
+        ClassicEditor.create(editor, {
+                mediaEmbed: {
+                previewsInData: true
+            }
+            }).then(editor => {
+                console.log(editor);
+            }).catch(error => {
+                console.error(error);
+            });
+    });
+
+</script>
