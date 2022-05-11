@@ -37,9 +37,11 @@
                 </div>
             </div>
         </div>
-        <div class="submit">
-            <button type="submit" class="btn btn-dark">Save</button>
-        </div>
+        <button type="submit" class="btn btn-dark">Save</button>
+    </form>
+    <form action="/serie/delete" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette série ?');">
+        <input type="hidden" name="id" value="{{ serie.id }}">
+        <button class="btn btn-dark">Delete</button>
     </form>
 </section>
 

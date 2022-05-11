@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Model\CategoryManager;
 use App\Model\SerieManager;
+use App\Model\CategoryManager;
 
 class CategoryController extends AbstractController
 {

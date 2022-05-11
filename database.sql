@@ -16,6 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `pseudo` varchar(255) DEFAULT NULL,
+  `firstname` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `email` varchar(80) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
 -- Table structure for table `category`
 --
 
@@ -58,9 +85,12 @@ CREATE TABLE `serie` (
   `image` varchar(45) DEFAULT NULL,
   `description` text, 
   `category_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_serie_category_idx` (`category_id`),
-  CONSTRAINT `fk_serie_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
+  KEY `fk_serie_user_idx` (`user_id`),
+  CONSTRAINT `fk_serie_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
+  CONSTRAINT `fk_serie_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -70,7 +100,7 @@ CREATE TABLE `serie` (
 
 LOCK TABLES `serie` WRITE;
 /*!40000 ALTER TABLE `serie` DISABLE KEYS */;
-INSERT INTO `serie` VALUES 
+INSERT INTO `serie` (id, title, number_serie, image, description, category_id) VALUES 
 (1, 'Jijutsu kaizen0', 1, 'Jijutsu_kaizen0.jpg', "<p><strong>16+,1 Season, 1 Movie, Japan.</p></strong>
 <p><strong>Genres : Anime Series, International TV Shows</strong></p>
 <p>Yuta Okkotsu is haunted by the spirit of Rika, his childhood friend who died in a car accident. 
@@ -166,33 +196,6 @@ UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 --
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `pseudo` varchar(255) DEFAULT NULL,
-  `firstname` varchar(255) DEFAULT NULL,
-  `lastname` varchar(255) DEFAULT NULL,
-  `email` varchar(80) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `seen`
 --
 
@@ -201,7 +204,7 @@ DROP TABLE IF EXISTS `seen`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `seen` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `is_completed` tinyint DEFAULT NULL,
+  `status` VARCHAR(75) DEFAULT NULL,
   `user_id` int DEFAULT NULL,
   `serie_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),

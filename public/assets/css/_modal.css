@@ -14,18 +14,15 @@ outline: 0;
     border-color: #EEEEEE;
 }
 
-/* #user-css{
-display: flex;
-flex-direction: row;
-} */
+.nav-tabs {
+    border-bottom: 1px solid #303D5D;
+}
 
 .modal-header {
     color: #ECD500;
     background-color: #303D5D;
     border-color: #EEEEEE;
 }
-
-
 
 .btn-primary {
     color: #ECD500 ;

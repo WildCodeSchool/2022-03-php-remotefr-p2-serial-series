@@ -6,31 +6,36 @@
             <div class="affiche">
                 <div class="bloc1">
                     <div class="titre">
+
                         <h2>
                             {{ serie.title }}
                         </h2>
                     </div>
-                    <div class="form">
-                        <form>
-                            <select name="seen" id="seen">
-                                <option value="seen">
-                                    Seen
-                                                                    
-                                </option>
-                                <option value="p-seen">
-                                    Partially seen
-                                                                    
-                                </option>
-                                <option value="n-seen">
-                                    Not seen
-                                                                    
-                                </option>
-                            </select>
-                        </form>
-                    </div>
+                   
                 </div>
                 <img class="img-fluid" src="/uploads/{{ serie.image }}"></div>
                 <div class="description">
+
+                 <div class="form">
+                        <form action ="/seen/update" method="post">
+                        <input type="hidden" name="serie_id" value="{{serie.id}}">
+                       <div class="input-group">
+                            <select class="form-select" name="status" id="seen">
+                                <option value="completed" {% if seen.status == 'completed' %} selected {% endif %}>
+                                    Seen
+                                                                    
+                                </option>
+                                <option value="partial" {% if seen.status == 'partial' %} selected {% endif %}>
+                                    Partially seen                         
+                                </option>
+                                <option value="none" {% if seen.status == 'none' %} selected {% endif %}>
+                                    Not seen                            
+                                </option>
+                            </select>
+                            <button class="btn btn-dark" type="submit">Update</button>
+                        </div>
+                        </form>
+                    </div>
                     <h2>
                         Synopsis
                                             
@@ -40,9 +45,73 @@
                     </p>
                 
                 <div class="edit">
-                    <a href="/serie/edit?id={{ serie.id }}" class="btn btn-dark">Edit</a>
+                    {% if serie.user_id == user.id %}
+                    <a class="btn btn-dark"
+                        href="/serie/edit?id={{ serie.id }}">
+                        Edit
+                    </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </section>
+
+      <!-- Swiper -->
+    <section class="myseries">
+        <section class="swiper mySwiper mb-5 mx-5">
+            <h3 class="mb-5 mt-5">
+                My series
+            </h3>
+            <div class="swiper-wrapper">
+                {% for i in 1..6 %}
+                    <div class="swiper-slide d-flex flex-column position-relative">
+                        <img class="img-fluid" src="https://fakeimg.pl/60x90/">
+                        <a class="stretched-link" href="#"></a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </section>
+    </section>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+    var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    centerMode: true,
+    centerPadding: '20px',
+    spaceBetween: 30,
+    navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+    320: {
+    slidesPerView: 1,
+    spaceBetween: 20
+    },
+    480: {
+    slidesPerView: 1,
+    spaceBetween: 20
+    },
+    768: {
+    slidesPerView: 2,
+    spaceBetween: 40
+    },
+    1024: {
+    slidesPerView: 3,
+    spaceBetween: 50
+    },
+    1400: {
+    slidesPerView: 4,
+    spaceBetween: 50
+    }
+    }
+    });
+    </script>
 {% endblock %}

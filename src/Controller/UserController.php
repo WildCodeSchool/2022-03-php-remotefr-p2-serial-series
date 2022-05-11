@@ -14,11 +14,11 @@ class UserController extends AbstractController
             $form = array_map('trim', $_POST);
             
             if (empty($form['email'])) {
-                $errors[] = "Email is required :p";
+                $errors[] = "Email is required";
             }
 
             if (empty($form['password'])) {
-                $errors[] =  "Password is required :p";
+                $errors[] =  "Password is required";
             }
 
             if(empty($errors)) {

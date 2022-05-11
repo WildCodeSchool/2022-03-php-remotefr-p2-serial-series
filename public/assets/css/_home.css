@@ -27,6 +27,7 @@
     background-color: rgb(var(--bs-primary-rgb));
     font-family: var(--bs-font-monospace);
     font-size: 1.7rem;
+    color: rgb(var(--bs-success-rgb));
 }
 
 .logo-home {
@@ -35,6 +36,7 @@
     flex-direction: column;
 
 }
+
 
 @media screen and (max-width: 1199px) {
     .text-home > h1 {
