@@ -9,7 +9,7 @@ class SerieManager extends AbstractManager
     public function selectAll(string $orderBy = '', string $direction = 'ASC'): array
     {
         $query = 'SELECT *, s.id, s.title AS serieTitle FROM ' . static::TABLE
-        . ' AS s JOIN ' . CategoryManager::TABLE . ' AS c ON s.category_id=c.id ';
+            . ' AS s JOIN ' . CategoryManager::TABLE . ' AS c ON s.category_id=c.id ';
         if ($orderBy) {
             $query .= ' ORDER BY ' . $orderBy . ' ' . $direction;
         }
@@ -57,5 +57,17 @@ class SerieManager extends AbstractManager
         $statement->bindValue('category_id', $serie['category'], \PDO::PARAM_INT);
 
         return $statement->execute();
+    }
+    /**
+     * selectectionner les séries que l'utilisateur n'a pas vu en entier
+     */
+    public function selectSuggestedSeries(int $userId)
+    {
+        $query = "SELECT serie.*, seen.serie_id, seen.status, seen.user_id AS seenUserId FROM " . self::TABLE .
+         " LEFT JOIN " . SeenManager::TABLE . " ON seen.serie_id=serie.id ";
+        $statement = $this->pdo->prepare($query);
+        // $statement->bindValue('user_id', $userId);
+        $statement->execute();
+        return $statement->fetchAll();
     }
 }

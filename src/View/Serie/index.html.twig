@@ -1,72 +1,76 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-    <section>
-        <div class="page">
-            <div class="affiche">
-                <div class="bloc1">
-                    <div class="titre">
+	<section>
+		<div class="page">
+			<div class="affiche">
+				<div class="bloc1">
+					<div class="titre">
+						<h2>
+							{{ serie.title }}
+						</h2>
+					</div>
+				</div>
+				<img class="img-fluid" src="/uploads/{{ serie.image }}">
+			</div>
+			<div class="description">
+				{% if user %}	
+				<div class="form">
+					<form action="/seen/update" method="post">
+						<input type="hidden" name="serie_id" value="{{serie.id}}">
+						<div class="input-group">
+							<select class="form-select my-5" name="status" id="seen">
+								<option disabled>Are you seen this serie ? Share it !</option>
+								<option value="completed" {% if seen.status == 'completed' %} selected {% endif %}>
+									Not Seen
+								</option>
+								<option value="partial" {% if seen.status == 'partial' %} selected {% endif %}>
+									Partially seen
+								</option>
+								<option value="none" {% if seen.status == 'none' %} selected {% endif %}>
+									Seen
+								</option>
+							</select>
+							<button class="btn btn-dark my-5" type="submit">Update</button>
+								
+						</div>
+					</form>	
+				</div>
+				{% endif %}
+				<h2>
+					Synopsis
+				</h2>
+				<p>
+					{{ serie.description|raw }}
+				</p>
+		
+				<div class="edit">
+					{% if serie.user_id == user.id and user %}
+						<a class="btn btn-dark" href="/serie/edit?id={{ serie.id }}">
+							Edit
+						</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</section>
 
-                        <h2>
-                            {{ serie.title }}
-                        </h2>
-                    </div>
-                   
-                </div>
-                <img class="img-fluid" src="/uploads/{{ serie.image }}"></div>
-                <div class="description">
-
-                 <div class="form">
-                        <form action ="/seen/update" method="post">
-                        <input type="hidden" name="serie_id" value="{{serie.id}}">
-                       <div class="input-group">
-                            <select class="form-select" name="status" id="seen">
-                                <option value="completed" {% if seen.status == 'completed' %} selected {% endif %}>
-                                    Seen
-                                                                    
-                                </option>
-                                <option value="partial" {% if seen.status == 'partial' %} selected {% endif %}>
-                                    Partially seen                         
-                                </option>
-                                <option value="none" {% if seen.status == 'none' %} selected {% endif %}>
-                                    Not seen                            
-                                </option>
-                            </select>
-                            <button class="btn btn-dark" type="submit">Update</button>
-                        </div>
-                        </form>
-                    </div>
-                    <h2>
-                        Synopsis
-                                            
-                    </h2>
-                    <p>
-                        {{ serie.description|raw }}
-                    </p>
-                
-                <div class="edit">
-                    {% if serie.user_id == user.id %}
-                    <a class="btn btn-dark"
-                        href="/serie/edit?id={{ serie.id }}">
-                        Edit
-                    </a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </section>
-
-      <!-- Swiper -->
+	<!-- Swiper -->
+	{% if suggestedSeries %}
     <section class="myseries">
         <section class="swiper mySwiper mb-5 mx-5">
             <h3 class="mb-5 mt-5">
-                My series
+             My suggestions
             </h3>
             <div class="swiper-wrapper">
-                {% for i in 1..6 %}
+            
+                {% for serieSuggested in suggestedSeries|filter(serieSuggested => (serieSuggested.status == 'none' or serieSuggested.status == 'partial') 
+                and serieSuggested.seenUserId == user.id and serieSuggested.id != serie.id )|slice(0,10) %}
                     <div class="swiper-slide d-flex flex-column position-relative">
-                        <img class="img-fluid" src="https://fakeimg.pl/60x90/">
-                        <a class="stretched-link" href="#"></a>
+                        <img class="img-fluid" src='/uploads/{{ serieSuggested.image }}'>
+                        <a class="stretched-link" href="/serie/show?id={{ serieSuggested.id }}">
+                            {{ serieSuggested.title }}
+                        </a>
                     </div>
                 {% endfor %}
             </div>
@@ -75,43 +79,44 @@
             <div class="swiper-pagination"></div>
         </section>
     </section>
+    {% endif %}
 
-    <!-- Swiper JS -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Initialize Swiper -->
-    <script>
-    var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 3,
-    centerMode: true,
-    centerPadding: '20px',
-    spaceBetween: 30,
-    navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-    },
-    breakpoints: {
-    320: {
-    slidesPerView: 1,
-    spaceBetween: 20
-    },
-    480: {
-    slidesPerView: 1,
-    spaceBetween: 20
-    },
-    768: {
-    slidesPerView: 2,
-    spaceBetween: 40
-    },
-    1024: {
-    slidesPerView: 3,
-    spaceBetween: 50
-    },
-    1400: {
-    slidesPerView: 4,
-    spaceBetween: 50
-    }
-    }
-    });
-    </script>
+	<!-- Swiper JS -->
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    
+	<!-- Initialize Swiper -->
+	<script>
+		var swiper = new Swiper(".mySwiper", {
+slidesPerView: 3,
+centerMode: true,
+centerPadding: '20px',
+spaceBetween: 30,
+navigation: {
+nextEl: ".swiper-button-next",
+prevEl: ".swiper-button-prev"
+},
+breakpoints: {
+320: {
+slidesPerView: 1,
+spaceBetween: 20
+},
+480: {
+slidesPerView: 1,
+spaceBetween: 20
+},
+768: {
+slidesPerView: 2,
+spaceBetween: 40
+},
+1024: {
+slidesPerView: 3,
+spaceBetween: 50
+},
+1400: {
+slidesPerView: 4,
+spaceBetween: 50
+}
+}
+});
+	</script>
 {% endblock %}
