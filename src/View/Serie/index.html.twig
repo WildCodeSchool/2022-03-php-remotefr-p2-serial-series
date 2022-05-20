@@ -22,13 +22,13 @@
 							<select class="form-select my-5" name="status" id="seen">
 								<option disabled>Are you seen this serie ? Share it !</option>
 								<option value="completed" {% if seen.status == 'completed' %} selected {% endif %}>
-									Not Seen
+									Seen
 								</option>
 								<option value="partial" {% if seen.status == 'partial' %} selected {% endif %}>
 									Partially seen
 								</option>
 								<option value="none" {% if seen.status == 'none' %} selected {% endif %}>
-									Seen
+									Not Seen
 								</option>
 							</select>
 							<button class="btn btn-dark my-5" type="submit">Update</button>
